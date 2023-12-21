@@ -41,6 +41,20 @@ def user_logout(request):
 def user_profile(request):
     return render(request, 'users/profile.html')
 
+@login_required
+def profile_create(request):
+    if request.method == 'POST':
+        form = UserProfileForm(request.POST, request.FILES)
+        if form.is_valid():
+            profile = form.save(commit=False)
+            profile.user = request.user
+            profile.save()
+            return redirect('users:profile')
+    else:
+        form = UserProfileForm()
+
+    return render(request, 'users/profile_create.html', {'form': form})
+
 
 # views.py
 @login_required
