@@ -9,12 +9,15 @@
             <h1 class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">
                 Welcome to Trainees</h1>
             <p class="mb-6 font-light text-gray-500 md:text-lg dark:text-gray-400">Your go-to app for transforming your daily workouts into a vibrant visual experience! Cultivate a healthy exercise routine effortlessly and share your fitness journey with the world. Let's make fitness a lifestyle together!</p>
+            {% if user.is_authenticated %}
+            {% else %}
             <a href="{% url 'users:signup' %}" class="inline-flex items-center justify-center px-5 py-3 mr-3 text-base font-medium text-center text-white rounded-lg bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 dark:focus:ring-purple-900">
                 Get started
                 <svg class="w-5 h-5 ml-2 -mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                     <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path>
                 </svg>
             </a>
+            {% endif %}
         </div>
         <img class="w-full dark:hidden" src="{% static 'trainees/images/top_page4.jpg' %}" alt="dashboard image">
         <img class="w-full hidden dark:block" src="{% static 'trainees/images/top_page4.jpg' %}" alt="dashboard image">
@@ -31,12 +34,21 @@
         <div class="mt-4 md:mt-0">
             <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">Maintain your fitness routine effortlessly with the Workout Tracker app.</h2>
             <p class="mb-6 font-light text-gray-500 md:text-lg dark:text-gray-400">Healthy exercise habits and effortlessly monitor your progress. Stick to your workouts and track your achievements with ease!</p>
+            {% if user.is_authenticated %}
+            <a href="{% url 'progress:index' %}" class="inline-flex items-center justify-center px-5 py-3 mr-3 text-base font-medium text-center text-white rounded-lg bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 dark:focus:ring-purple-900">
+                Get started
+                <svg class="w-5 h-5 ml-2 -mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                </svg>
+            </a>
+            {% else %}
             <a href="{% url 'users:signup' %}" class="inline-flex items-center justify-center px-5 py-3 mr-3 text-base font-medium text-center text-white rounded-lg bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 dark:focus:ring-purple-900">
                 Get started
                 <svg class="w-5 h-5 ml-2 -mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                     <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path>
                 </svg>
             </a>
+            {% endif %}
         </div>
     </div>
 </section>
@@ -48,12 +60,21 @@
             <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">
                 Become part of our community! </h2>
             <p class="mb-6 font-light text-gray-500 md:text-lg dark:text-gray-400">Share your daily workout achievements and engage with fellow trainees. Let's connect and communicate on our fitness journey together!</p>
+            {% if user.is_authenticated %}
+            <a href="{% url 'community:index' %}" class="inline-flex items-center justify-center px-5 py-3 mr-3 text-base font-medium text-center text-white rounded-lg bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 dark:focus:ring-purple-900">
+                Get started
+                <svg class="w-5 h-5 ml-2 -mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                </svg>
+            </a>
+            {% else %}
             <a href="{% url 'users:signup' %}" class="inline-flex items-center justify-center px-5 py-3 mr-3 text-base font-medium text-center text-white rounded-lg bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 dark:focus:ring-purple-900">
                 Get started
                 <svg class="w-5 h-5 ml-2 -mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                     <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path>
                 </svg>
             </a>
+            {% endif %}
         </div>
         <img class="w-full dark:hidden" src="{% static 'trainees/images/top_page2.jpg' %}" alt="dashboard image">
         <img class="w-full hidden dark:block" src="{% static 'trainees/images/top_page2.jpg' %}" alt="dashboard image">
