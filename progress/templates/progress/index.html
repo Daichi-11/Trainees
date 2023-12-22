@@ -36,7 +36,11 @@
             <div>
               <button type="button" class="flex text-sm bg-gray-800 rounded-full focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600" aria-expanded="false" data-dropdown-toggle="dropdown-user">
                 <span class="sr-only">Open user menu</span>
+              {% if user.userprofile.profile_picture %}
                 <img class="w-11 h-11 mb-1 rounded-full " src="{{ user.userprofile.profile_picture.url }}" class="h-10" alt="user photo">
+              {% else %}
+                <img class="w-11 h-11 mb-1 rounded-full " src="{% static 'trainees/images/user.jpg' %}" class="h-10" alt="Default photo">
+              {% endif %}
               </button>
             </div>
             <div class="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded shadow dark:bg-gray-700 dark:divide-gray-600" id="dropdown-user">

@@ -1,6 +1,9 @@
 from django.shortcuts import render
 import requests
+from django.contrib.auth.decorators import login_required
 
+
+@login_required
 def index(request):
     # Check if the request method is POST
     if request.method == 'POST':

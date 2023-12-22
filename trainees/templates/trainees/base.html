@@ -36,7 +36,12 @@
       <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
         <button type="button" class="flex text-sm bg-gray-800 rounded-full md:me-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600" id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown" data-dropdown-placement="bottom">
           <span class="sr-only">Open user menu</span>
-          <img class="w-11 h-11 mb-1 rounded-full " src="{{ user.userprofile.profile_picture.url }}" class="h-10" alt="user photo">
+          {% if user.userprofile.profile_picture %}
+            <img class="w-11 h-11 mb-1 rounded-full " src="{{ user.userprofile.profile_picture.url }}" class="h-10" alt="user photo">
+          {% else %}
+            <img class="w-11 h-11 mb-1 rounded-full " src="{% static 'trainees/images/user.jpg' %}" class="h-10" alt="Default photo">
+          {% endif %}
+          
         </button>
         <!-- Dropdown menu -->
         <div class="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600" id="user-dropdown">
@@ -101,8 +106,8 @@
     </div>
   </nav>
 
-  {% block content %}
 
+  {% block content %}
   {% endblock %}
 
   <footer class="p-4 bg-white sm:p-6 dark:bg-gray-800">
