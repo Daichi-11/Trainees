@@ -15,7 +15,6 @@ def user_signup(request):
         password = form.cleaned_data.get('password1')
         user = authenticate(username=username, password=password)
         login(request, user)
-        messages.success(request, 'Account created successfully!')
         return redirect('home')
     else:
         form = SignUpForm()
@@ -30,7 +29,6 @@ def user_login(request):
             password = form.cleaned_data.get('password')
             user = authenticate(username=username, password=password)
             login(request, user)
-            messages.success(request, 'Login successfully!')
             return redirect('home')
     else:
         form = AuthenticationForm()
