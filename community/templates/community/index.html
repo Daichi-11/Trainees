@@ -31,8 +31,6 @@
                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
                             </svg>
                         </a>
-
-                        {% if user.is_authenticated and user == post.user %}
     
                         <div class="flex items-center space-x-3">
                             <a href="{% url 'community:delete' pk=post.id %}" class="text-gray-800 dark:text-white">
@@ -49,7 +47,6 @@
                             </a>
                         </div>
                 
-                        {% endif %}
                     </div>
                 </div>
             </div>
