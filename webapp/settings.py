@@ -85,13 +85,20 @@ WSGI_APPLICATION = 'webapp.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'traineesdb',         
+        'NAME': 'traineesdb',
         'USER': 'postgres',
         'PASSWORD': 'aTJDvCAkWunxmkl',
-        'HOST': 'traineesdb.internal', 
-        'PORT': '5432',              
+        'HOST': 'traineesdb.flycast',
+        'PORT': '5432',
+        'OPTIONS': {
+            'connect_timeout': 5,
+        },
+        'CONN_MAX_AGE': 300,
     }
 }
+
+
+
 
 
 # Password validation
