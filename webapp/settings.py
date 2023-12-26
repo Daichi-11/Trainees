@@ -32,6 +32,7 @@ APP_NAME = os.environ.get("FLY_APP_NAME")
 ALLOWED_HOSTS = [f"{APP_NAME}.fly.dev", 'localhost', '127.0.0.1', 'trainees1.com', 'www.trainees1.com']
 
 
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -84,8 +85,12 @@ WSGI_APPLICATION = 'webapp.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / "db.sqlite3",
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'traineesdb',
+        'USER': 'postgres',
+        'PASSWORD': 'Z9Xx9qzw4DimT4S',
+        'HOST': 'trainees.fly.dev',
+        'PORT': '5433',
     }
 }
 
