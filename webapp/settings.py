@@ -29,7 +29,7 @@ SECRET_KEY = 'django-insecure-xcsf16p)19vnsna@(+lt^(*lr43hk6x&ta+#j@pa@r3-_j6@j&
 DEBUG = True
 
 APP_NAME = os.environ.get("FLY_APP_NAME")
-ALLOWED_HOSTS = ['trainees.fly.dev', 'localhost', '127.0.0.1', 'trainees1.com', 'www.trainees1.com']
+ALLOWED_HOSTS = [f"{APP_NAME}.fly.dev", 'localhost', '127.0.0.1', 'trainees1.com', 'www.trainees1.com']
 
 
 # Application definition
@@ -84,13 +84,11 @@ WSGI_APPLICATION = 'webapp.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': '',
-        'NAME': '',
-        'USER': '',
-        'PASSWORD': '',
-        'HOST': '',
-        'PORT': '',}
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / "db.sqlite3",
+    }
 }
+
 
 
 
