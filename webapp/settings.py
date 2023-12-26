@@ -29,7 +29,7 @@ SECRET_KEY = 'django-insecure-xcsf16p)19vnsna@(+lt^(*lr43hk6x&ta+#j@pa@r3-_j6@j&
 DEBUG = True
 
 APP_NAME = os.environ.get("FLY_APP_NAME")
-ALLOWED_HOSTS = [f"{APP_NAME}.fly.dev", 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['trainees.fly.dev', 'localhost', '127.0.0.1', 'trainees1.com', 'www.trainees1.com']
 
 
 # Application definition
@@ -134,5 +134,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 CSRF_COOKIE_SECURE = True
+CSRF_TRUSTED_ORIGINS = ['https://trainees.fly.dev']
 
 
