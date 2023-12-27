@@ -1,4 +1,4 @@
-# fly.toml app configuration file generated for trainees on 2023-12-26T13:12:03+09:00
+# fly.toml app configuration file generated for trainees on 2023-12-27T14:09:53+09:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
@@ -8,6 +8,9 @@ primary_region = "nrt"
 console_command = "/code/manage.py shell"
 
 [build]
+
+[deploy]
+  release_command = "python manage.py migrate --noinput"
 
 [env]
   PORT = "8000"
