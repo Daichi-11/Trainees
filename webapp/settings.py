@@ -10,10 +10,14 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
+import os
 from pathlib import Path
 from django.conf import settings
 from django.conf.urls.static import static
-import os
+from environs import Env  
+
+env = Env()  
+env.read_env() 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -23,13 +27,17 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-xcsf16p)19vnsna@(+lt^(*lr43hk6x&ta+#j@pa@r3-_j6@j&'
+SECRET_KEY = env.str(
+    "SECRET_KEY", 
+    default="django-insecure-^qi19(+(oo-ere5b&$@275chw)k@7ob1)74aol5d$(k*)5kk5)",
+)
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = env.bool("DEBUG", default=False)
 
-APP_NAME = os.environ.get("FLY_APP_NAME")
-ALLOWED_HOSTS = [f"{APP_NAME}.fly.dev", 'localhost', '127.0.0.1', 'trainees1.com', 'www.trainees1.com']
+ALLOWED_HOSTS = ["trainees.fly.dev", "localhost", "127.0.0.1"]
+CSRF_COOKIE_SECURE = True
+CSRF_TRUSTED_ORIGINS = ["https://trainees.fly.dev"]
 
 
 
@@ -45,12 +53,14 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'whitenoise.runserver_nostatic',
     'django.contrib.staticfiles',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -84,14 +94,7 @@ WSGI_APPLICATION = 'webapp.wsgi.application'
 
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'traineesdb',
-        'USER': 'postgres',
-        'PASSWORD': 'Z9Xx9qzw4DimT4S',
-        'HOST': 'trainees.fly.dev',
-        'PORT': '5433',
-    }
+    "default": env.dj_db_url("DATABASE_URL", default="sqlite:///db.sqlite3"),
 }
 
 
@@ -133,7 +136,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATICFILES_DIRS = [BASE_DIR / "static"]
+STATIC_ROOT = BASE_DIR / "staticfiles"
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage" 
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
@@ -142,7 +147,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
-CSRF_COOKIE_SECURE = True
-CSRF_TRUSTED_ORIGINS = ['https://trainees.fly.dev']
 
 
